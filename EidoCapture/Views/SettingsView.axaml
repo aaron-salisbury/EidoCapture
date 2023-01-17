@@ -24,7 +24,7 @@
 		
 		<StackPanel Margin="0,0,0,15">
 			<TextBlock Text="Capture Delay Seconds" Classes="propertyLabel" />
-			<NumericUpDown Value="{Binding DelaySeconds}" Width="160" HorizontalAlignment="Left" IsEnabled="{Binding !IsCapturing}" />
+			<NumericUpDown Value="{Binding DelaySeconds}" Minimum="1" Width="160" HorizontalAlignment="Left" IsEnabled="{Binding !IsCapturing}" />
 		</StackPanel>
 
 		<StackPanel Margin="0,0,0,15">

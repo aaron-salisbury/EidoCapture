@@ -42,6 +42,7 @@ namespace EidoCapture.Business.Services
 
             Deactivate();
 
+            delaySeconds = delaySeconds < 1.0M ? 1.0M : delaySeconds;
             int captureDelayMilliseconds = Convert.ToInt32(Math.Round(delaySeconds, 2, MidpointRounding.AwayFromZero) * 1000);
 
             _captureTokenSource = new CancellationTokenSource();
