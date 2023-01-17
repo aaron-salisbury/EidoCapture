@@ -16,8 +16,6 @@ namespace EidoCapture
         // Avalonia configuration, don't remove; also used by visual designer.
         public static AppBuilder BuildAvaloniaApp()
         {
-            GC.KeepAlive(typeof(Avalonia.Svg.Skia.Svg).Assembly); // Needed for SVG control to work with Avalonia previewer.
-
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Verbose()
                 .WriteTo.Sink(App.InMemorySink)
