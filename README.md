@@ -1,7 +1,7 @@
 Eido Capture
 ===============
 
-Desktop application (Avalonia) used to automatically take/save screenshots in set increaments.
+Desktop application (Avalonia) used to automatically take/save screenshots in set increments.
 
 <img src="https://raw.githubusercontent.com/aaron-salisbury/EidoCapture/master/screenshot.png" width="600">
 
