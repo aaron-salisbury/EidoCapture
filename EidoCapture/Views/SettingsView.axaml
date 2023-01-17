@@ -1,0 +1,41 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="EidoCapture.Views.SettingsView"
+			 Background="Transparent">
+
+	<UserControl.Styles>
+		<Style Selector="TextBlock.propertyLabel">
+			<Setter Property="FontWeight" Value="Light" />
+			<Setter Property="FontSize" Value="14" />
+			<Setter Property="Margin" Value="0,0,0,5" />
+		</Style>
+	</UserControl.Styles>
+	
+	<StackPanel>
+		<TextBlock Text="Settings" FontSize="18" Margin="0,0,0,10" />
+
+		<StackPanel Margin="0,0,0,15">
+			<TextBlock Text="Storage Location" Classes="propertyLabel" />
+			<TextBox IsReadOnly="True" Width="325" Text="{Binding UserStorageDirectory}" HorizontalAlignment="Left" IsEnabled="{Binding !IsCapturing}" />
+		</StackPanel>
+		
+		<StackPanel Margin="0,0,0,15">
+			<TextBlock Text="Capture Delay Seconds" Classes="propertyLabel" />
+			<NumericUpDown Value="{Binding DelaySeconds}" Width="160" HorizontalAlignment="Left" IsEnabled="{Binding !IsCapturing}" />
+		</StackPanel>
+
+		<StackPanel Margin="0,0,0,15">
+			<TextBlock Text="Display" Classes="propertyLabel" />
+			<ComboBox SelectedItem="{Binding SelectedDisplay}"
+					  Items="{Binding Displays}"
+					  Width="160"
+					  HorizontalAlignment="Left"
+					  IsEnabled="{Binding !IsCapturing}" />
+		</StackPanel>
+
+	</StackPanel>
+	
+</UserControl>

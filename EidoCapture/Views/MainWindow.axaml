@@ -1,0 +1,33 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:v="using:EidoCapture.Views"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        d:DesignWidth="1280" d:DesignHeight="720" Width="960" Height="540"
+        x:Class="EidoCapture.Views.MainWindow"
+        Icon="/Base/Assets/logo.ico"
+        Title="EidoCapture"
+		ExtendClientAreaToDecorationsHint="True">
+
+	<Grid RowDefinitions="30, *">
+
+		<!-- Window Drag Area -->
+		<Border Grid.Row="0" IsHitTestVisible="False" />
+		
+		<!-- Background -->
+		<Grid Grid.RowSpan="2" IsHitTestVisible="False">
+			<Image ZIndex="-3" Stretch="Fill" Source="{SvgImage /Base/Assets/background.svg}" />
+		</Grid>
+
+		<Grid Grid.Row="1" IsHitTestVisible="True">
+			<Grid ColumnDefinitions="*, *" Margin="20">
+
+				<ContentControl Grid.Column="0" Content="{Binding SettingsView}" />
+
+				<ContentControl Grid.Column="1" Content="{Binding ControlsView}" HorizontalAlignment="Center" />
+
+			</Grid>
+		</Grid>
+		
+	</Grid>
+</Window>
