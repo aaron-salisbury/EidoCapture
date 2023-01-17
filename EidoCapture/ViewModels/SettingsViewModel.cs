@@ -9,15 +9,14 @@ namespace EidoCapture.ViewModels
         [ObservableProperty]
         private bool _isCapturing;
 
+        [ObservableProperty]
         private int _delaySeconds;
-        public int DelaySeconds
-        {
-            get { return _delaySeconds; }
-            set
-            {
-                SetProperty(ref _delaySeconds, value);
-            }
-        }
+
+        [ObservableProperty]
+        private List<string> _displays;
+
+        [ObservableProperty]
+        private string _selectedDisplay;
 
         private string _userStorageDirectory;
         public string UserStorageDirectory
@@ -26,19 +25,6 @@ namespace EidoCapture.ViewModels
             set
             {
                 SetProperty(ref _userStorageDirectory, value);
-            }
-        }
-
-        [ObservableProperty]
-        private List<string> _displays;
-
-        private string _selectedDisplay;
-        public string SelectedDisplay
-        {
-            get { return _selectedDisplay; }
-            set
-            {
-                SetProperty(ref _selectedDisplay, value);
             }
         }
 
