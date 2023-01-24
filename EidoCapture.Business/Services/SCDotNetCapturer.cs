@@ -1,4 +1,5 @@
-﻿using ScreenCapture.NET;
+﻿using Microsoft.IO;
+using ScreenCapture.NET;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
 using System;
@@ -16,6 +17,8 @@ namespace EidoCapture.Business.Services
         {  
             get { return _captureTask != null && _captureTask.Status == TaskStatus.Running; }
         }
+
+        private static readonly RecyclableMemoryStreamManager _recyclableStreamManager = new RecyclableMemoryStreamManager();
 
         private Action<byte[]> _imageCapturedAction;
         private CancellationTokenSource _captureTokenSource;
@@ -96,10 +99,10 @@ namespace EidoCapture.Business.Services
                 lock (captureZone.Buffer)
                 {
                     using Image image = Image.LoadPixelData<Bgra32>(captureZone.Buffer, captureZone.Width, captureZone.Height);
-                    using MemoryStream jpgStream = new MemoryStream();
+                    using MemoryStream jpgStream = _recyclableStreamManager.GetStream();
                     image.SaveAsJpeg(jpgStream);
 
-                    return jpgStream.ToArray();
+                    return jpgStream.GetBuffer();
                 }
             });
         }
