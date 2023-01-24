@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -96,16 +95,7 @@ namespace EidoCapture.Business.Services
 
                 lock (captureZone.Buffer)
                 {
-                    int length = captureZone.Height * captureZone.Stride;
-                    byte[] managedArray = new byte[length];
-                    GCHandle pinnedArray = GCHandle.Alloc(captureZone.Buffer, GCHandleType.Pinned);
-                    IntPtr pointer = pinnedArray.AddrOfPinnedObject();
-
-                    Marshal.Copy(pointer, managedArray, 0, length);
-
-                    pinnedArray.Free();
-
-                    using Image image = Image.LoadPixelData<Bgra32>(managedArray, captureZone.Width, captureZone.Height);
+                    using Image image = Image.LoadPixelData<Bgra32>(captureZone.Buffer, captureZone.Width, captureZone.Height);
                     using MemoryStream jpgStream = new MemoryStream();
                     image.SaveAsJpeg(jpgStream);
 
