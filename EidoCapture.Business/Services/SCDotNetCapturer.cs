@@ -1,8 +1,8 @@
 ﻿using ScreenCapture.NET;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.PixelFormats;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -96,24 +96,20 @@ namespace EidoCapture.Business.Services
 
                 lock (captureZone.Buffer)
                 {
-                    //TODO: Figure out cross-platform solution to convert buffer to jpeg.
-                    // This uses System.Drawing.Common which since .NET 7, non-Windows platforms are not supported, even with the runtime configuration switch.
-                    if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-                    {
-                        GCHandle pinnedArray = GCHandle.Alloc(captureZone.Buffer, GCHandleType.Pinned);
-                        IntPtr pointer = pinnedArray.AddrOfPinnedObject();
+                    int length = captureZone.Height * captureZone.Stride;
+                    byte[] managedArray = new byte[length];
+                    GCHandle pinnedArray = GCHandle.Alloc(captureZone.Buffer, GCHandleType.Pinned);
+                    IntPtr pointer = pinnedArray.AddrOfPinnedObject();
 
-                        Bitmap bitmap = new Bitmap(captureZone.Width, captureZone.Height, captureZone.Stride, PixelFormat.Format32bppArgb, pointer);
+                    Marshal.Copy(pointer, managedArray, 0, length);
 
-                        pinnedArray.Free();
+                    pinnedArray.Free();
 
-                        using MemoryStream jpgStream = new MemoryStream();
-                        bitmap.Save(jpgStream, ImageFormat.Jpeg);
+                    using Image image = Image.LoadPixelData<Bgra32>(managedArray, captureZone.Width, captureZone.Height);
+                    using MemoryStream jpgStream = new MemoryStream();
+                    image.SaveAsJpeg(jpgStream);
 
-                        return jpgStream.ToArray();
-                    }
-
-                    return captureZone.Buffer;
+                    return jpgStream.ToArray();
                 }
             });
         }
