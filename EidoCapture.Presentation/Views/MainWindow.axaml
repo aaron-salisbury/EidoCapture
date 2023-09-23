@@ -1,0 +1,24 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:EidoCapture.Presentation.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:v="clr-namespace:EidoCapture.Presentation.Views"
+        mc:Ignorable="d" d:DesignWidth="1280" d:DesignHeight="720"
+        x:Class="EidoCapture.Presentation.Views.MainWindow"
+        Icon="/Base/Assets/logo.ico"
+        Title="Eido Capture"
+		WindowStartupLocation="CenterScreen"
+		Background="{StaticResource SystemChromeBlackMediumLowColor}"
+		ExtendClientAreaToDecorationsHint="True">
+
+	<Grid RowDefinitions="30, *">
+
+		<!-- Window Drag Area -->
+		<Border Grid.Row="0" IsHitTestVisible="False" />
+
+		<v:MainView Grid.Row="1" IsHitTestVisible="True" />
+
+	</Grid>
+	
+</Window>

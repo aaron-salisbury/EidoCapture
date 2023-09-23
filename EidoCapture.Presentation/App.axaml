@@ -1,0 +1,30 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="EidoCapture.Presentation.App"
+			 xmlns:base="using:EidoCapture.Presentation.Base"
+			 xmlns:materialIcons="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
+             RequestedThemeVariant="Dark">
+             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+
+	<Application.DataTemplates>
+		<base:ViewLocator />
+	</Application.DataTemplates>
+
+	<Application.Styles>
+		<FluentTheme>
+			<!-- Exported using: https://theme.xaml.live/ -->
+			<FluentTheme.Palettes>
+				<!-- ColorPalette Properties: https://github.com/AvaloniaUI/Avalonia/blob/master/src/Avalonia.Themes.Fluent/ColorPaletteResources.Properties.cs -->
+				<ColorPaletteResources x:Key="Light" Accent="#ff9bcf6e" AltHigh="White" AltLow="White" AltMedium="White" AltMediumHigh="White" AltMediumLow="White" BaseHigh="Black" BaseLow="#ff8c8e94" BaseMedium="#ff56575c" BaseMediumHigh="#ff323337" BaseMediumLow="#ff44454a" ChromeAltLow="#ff323337" ChromeBlackHigh="Black" ChromeBlackLow="#ff8c8e94" ChromeBlackMedium="#ff323337" ChromeBlackMediumLow="#ff56575c" ChromeDisabledHigh="#ff8c8e94" ChromeDisabledLow="#ff56575c" ChromeGray="#ff44454a" ChromeHigh="#ff8c8e94" ChromeLow="#ffd4d5d7" ChromeMedium="#ffc6c7ca" ChromeMediumLow="#ffd4d5d7" ChromeWhite="White" ListLow="#ffc6c7ca" ListMedium="#ff8c8e94" RegionColor="White" />
+				<ColorPaletteResources x:Key="Dark" Accent="#ff9bcf6e" AltHigh="Black" AltLow="Black" AltMedium="Black" AltMediumHigh="Black" AltMediumLow="Black" BaseHigh="White" BaseLow="#ff333741" BaseMedium="#ff989caa" BaseMediumHigh="#ffb1b5c4" BaseMediumLow="#ff656975" ChromeAltLow="#ffb1b5c4" ChromeBlackHigh="Black" ChromeBlackLow="#ffb1b5c4" ChromeBlackMedium="Black" ChromeBlackMediumLow="Black" ChromeDisabledHigh="#ff333741" ChromeDisabledLow="#ff989caa" ChromeGray="#ff7f8390" ChromeHigh="#ff7f8390" ChromeLow="#ff417916" ChromeMedium="#ff588e2c" ChromeMediumLow="#ff191e29" ChromeWhite="White" ListLow="#ff588e2c" ListMedium="#ff333741" RegionColor="#ff292d38" />
+			</FluentTheme.Palettes>
+		</FluentTheme>
+		<materialIcons:MaterialIconStyles />
+		<StyleInclude Source="/Base/Styles/Colors.axaml" />
+	</Application.Styles>
+
+	<Application.Resources>
+		<FontFamily x:Key="ViewHeadingFont">avares://EidoCapture.Presentation/Base/Assets/Fonts/akashi-font#Akashi</FontFamily>
+	</Application.Resources>
+	
+</Application>
