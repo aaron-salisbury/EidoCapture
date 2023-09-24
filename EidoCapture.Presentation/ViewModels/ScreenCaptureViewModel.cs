@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using EidoCapture.Business.Models;
 using EidoCapture.Presentation.Base;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 
 namespace EidoCapture.Presentation.ViewModels;
@@ -31,7 +32,7 @@ public partial class ScreenCaptureViewModel : BaseViewModel
 
     public ScreenCaptureViewModel()
     {
-        _screenCapturer = new ScreenCapturer(UpdateFrameBuffer);
+        _screenCapturer = new ScreenCapturer();
         _delaySeconds = 3;
         _displays = _screenCapturer.Capturer.GetDisplayNames().ToList();
         _selectedDisplay = _displays.FirstOrDefault() ?? string.Empty;
@@ -40,9 +41,24 @@ public partial class ScreenCaptureViewModel : BaseViewModel
         DeactivateCaptureCommand = new RelayCommand(() => OnDeactivateCapture());
     }
 
+    public override void AddModelEvents()
+    {
+        _screenCapturer.PropertyChanged += ScreenCapturer_PropertyChanged;
+    }
+
     public override void RemoveModelEvents()
     {
+        _screenCapturer.PropertyChanged -= ScreenCapturer_PropertyChanged;
         _screenCapturer.Shutdown();
+    }
+
+    private void ScreenCapturer_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+    {
+        if (sender is ScreenCapturer screenCapturer && nameof(ScreenCapturer.MostRecentScreenShotBuffer).Equals(e.PropertyName))
+        {
+            FrameBuffer = null; // I don't know why, but have to null-out before it will update with a new one after the first time.
+            FrameBuffer = screenCapturer.MostRecentScreenShotBuffer;
+        }
     }
 
     private void OnActivateCapture()
@@ -58,11 +74,5 @@ public partial class ScreenCaptureViewModel : BaseViewModel
 
         FrameBuffer = null;
         IsCapturing = false;
-    }
-
-    private void UpdateFrameBuffer(byte[] buffer)
-    {
-        FrameBuffer = null; // I don't know why, but have to null-out before it will update with a new one after the first time.
-        FrameBuffer = buffer;
     }
 }

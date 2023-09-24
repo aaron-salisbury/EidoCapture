@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\EidoCapture.Data\EidoCapture.Data.csproj" />
-    <ProjectReference Include="..\EidoCapture.Domains\EidoCapture.Domains.csproj" />
   </ItemGroup>
 
   <ItemGroup>

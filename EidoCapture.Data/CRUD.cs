@@ -1,5 +1,4 @@
 ﻿using EidoCapture.Data.Domains;
-using EidoCapture.Domains;
 using System.Diagnostics;
 using System.Text.Json;
 
@@ -9,16 +8,16 @@ namespace EidoCapture.Data
     {
         private static InternalStorage _internalStorage = Task.Run(() => InitializeInternalStorageAsync()).Result;
 
-        public static void CreateImage(ScreenShotImage screenShotImage)
+        public static void CreateImage(byte[] imageBuffer, string fileName)
         {
             try
             {
-                string path = Path.Combine(_internalStorage.UserStorageDirectory, "Images", screenShotImage.ParentDirectory, screenShotImage.FileName);
+                string path = Path.Combine(_internalStorage.UserStorageDirectory, "Images", fileName);
 
                 FileInfo file = new(path);
                 file.Directory?.Create();
 
-                File.WriteAllBytes(path, screenShotImage.Buffer);
+                File.WriteAllBytes(path, imageBuffer);
             }
             catch (Exception e)
             {

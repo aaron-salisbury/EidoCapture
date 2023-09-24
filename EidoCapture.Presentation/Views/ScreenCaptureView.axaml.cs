@@ -13,6 +13,13 @@ namespace EidoCapture.Presentation.Views
             this.SetDataContext(App.Current?.Services);
         }
 
+        protected override void OnLoaded(RoutedEventArgs e)
+        {
+            base.OnLoaded(e);
+
+            this.LoadModelEvents();
+        }
+
         protected override void OnUnloaded(RoutedEventArgs e)
         {
             base.OnUnloaded(e);

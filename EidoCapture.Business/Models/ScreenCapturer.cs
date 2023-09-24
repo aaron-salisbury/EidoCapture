@@ -1,8 +1,6 @@
 ﻿using EidoCapture.Business.Base;
 using EidoCapture.Business.Services;
 using EidoCapture.Data;
-using EidoCapture.Domains;
-using System.Globalization;
 
 namespace EidoCapture.Business.Models
 {
@@ -10,32 +8,29 @@ namespace EidoCapture.Business.Models
     {
         public ICapturer Capturer { get; set; }
 
-        private Action<byte[]>? _consumerScreenShotAction;
+        private byte[]? _mostRecentScreenShotBuffer;
+        public byte[]? MostRecentScreenShotBuffer
+        {
+            get { return _mostRecentScreenShotBuffer; }
+            set
+            {
+                _mostRecentScreenShotBuffer = value;
+                RaisePropertyChanged(nameof(MostRecentScreenShotBuffer));
+            }
+        }
 
-        public ScreenCapturer(Action<byte[]>? screenShotAction = null)
+        public ScreenCapturer()
         {
             Capturer = new SCDotNetCapturer(SaveScreenShot);
-
-            _consumerScreenShotAction = screenShotAction;
         }
 
         private void SaveScreenShot(byte[] imageBuffer)
         {
-            CRUD.CreateImage(CreateImage(imageBuffer));
+            ScreenShotImage image = new ScreenShotImage(imageBuffer);
 
-            if (_consumerScreenShotAction != null)
-            {
-                _consumerScreenShotAction.Invoke(imageBuffer);
-            }
-        }
+            CRUD.CreateImage(image.Buffer, image.ScopedFilePath());
 
-        private static ScreenShotImage CreateImage(byte[] imageBuffer)
-        {
-            DateTime currentDate = DateTime.Now;
-            string thisDaysImageFolder = currentDate.ToString("yyyy-MM-dd", DateTimeFormatInfo.InvariantInfo);
-            string fileName = currentDate.ToString("yyyy-MM-dd HH-mm-ss", DateTimeFormatInfo.InvariantInfo) + ".jpg";
-
-            return new ScreenShotImage(thisDaysImageFolder, fileName, imageBuffer);
+            MostRecentScreenShotBuffer = image.Buffer;
         }
 
         /// <summary>
