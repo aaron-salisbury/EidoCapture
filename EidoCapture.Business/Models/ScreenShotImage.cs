@@ -19,7 +19,9 @@ namespace EidoCapture.Business.Models
 
             ParentDirectory = thisDaysImageFolder;
             FileName = fileName;
-            Buffer = imageBuffer;
+
+            Buffer = new byte[imageBuffer.Length];
+            imageBuffer.CopyTo(Buffer, 0);
         }
     }
 }

@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using EidoCapture.Business.Models;
 using EidoCapture.Presentation.Base;
+using ScreenCapture.NET;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -56,7 +57,6 @@ public partial class ScreenCaptureViewModel : BaseViewModel
     {
         if (sender is ScreenCapturer screenCapturer && nameof(ScreenCapturer.MostRecentScreenShotBuffer).Equals(e.PropertyName))
         {
-            FrameBuffer = null; // I don't know why, but have to null-out before it will update with a new one after the first time.
             FrameBuffer = screenCapturer.MostRecentScreenShotBuffer;
         }
     }
@@ -72,7 +72,9 @@ public partial class ScreenCaptureViewModel : BaseViewModel
     {
         _screenCapturer.Capturer.Deactivate();
 
+        _screenCapturer.MostRecentScreenShotBuffer = null;
         FrameBuffer = null;
+
         IsCapturing = false;
     }
 }

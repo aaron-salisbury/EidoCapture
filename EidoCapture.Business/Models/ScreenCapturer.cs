@@ -11,12 +11,8 @@ namespace EidoCapture.Business.Models
         private byte[]? _mostRecentScreenShotBuffer;
         public byte[]? MostRecentScreenShotBuffer
         {
-            get { return _mostRecentScreenShotBuffer; }
-            set
-            {
-                _mostRecentScreenShotBuffer = value;
-                RaisePropertyChanged(nameof(MostRecentScreenShotBuffer));
-            }
+            get => _mostRecentScreenShotBuffer;
+            set => SetProperty(ref _mostRecentScreenShotBuffer, value);
         }
 
         public ScreenCapturer()
@@ -26,7 +22,7 @@ namespace EidoCapture.Business.Models
 
         private void SaveScreenShot(byte[] imageBuffer)
         {
-            ScreenShotImage image = new ScreenShotImage(imageBuffer);
+            ScreenShotImage image = new(imageBuffer);
 
             CRUD.CreateImage(image.Buffer, image.ScopedFilePath());
 
