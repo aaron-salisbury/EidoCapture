@@ -75,7 +75,6 @@ public partial class ScreenCaptureViewModel : BaseViewModel
     {
         _screenCapturer.Capturer.Deactivate();
 
-        _screenCapturer.MostRecentScreenShotBuffer = null;
         FrameBuffer = null;
 
         IsCapturing = false;

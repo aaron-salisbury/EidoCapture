@@ -42,6 +42,8 @@ namespace EidoCapture.Business.Models
         public void Shutdown()
         {
             Capturer.Deactivate();
+
+            MostRecentScreenShotBuffer = null;
         }
     }
 }
