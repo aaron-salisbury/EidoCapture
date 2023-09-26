@@ -22,6 +22,9 @@ namespace EidoCapture.Business.Models
 
             if (allocateNewImage)
             {
+                // A new reference is needed when the value is used in a binding.
+                // But when done in a loop, this is a lot of allocations and
+                // continuously spikes memory in-between GC collections.
                 Buffer = new byte[imageBuffer.Length];
                 imageBuffer.CopyTo(Buffer, 0);
             }
