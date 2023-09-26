@@ -43,12 +43,19 @@
 								   IsEnabled="{Binding !IsCapturing}" />
 				</StackPanel>
 
-				<StackPanel>
+				<StackPanel Margin="0,0,15,0">
 					<TextBlock Text="Display" Classes="propertyLabel" />
 					<ComboBox SelectedItem="{Binding SelectedDisplay}"
 							  ItemsSource="{Binding Displays}"
 							  Width="160"
 							  HorizontalAlignment="Left"
+							  IsEnabled="{Binding !IsCapturing}" />
+				</StackPanel>
+
+				<StackPanel>
+					<TextBlock Text="Show" Classes="propertyLabel" />
+					<CheckBox IsChecked="{Binding ShowScreenShots}" 
+							  HorizontalAlignment="Center" 
 							  IsEnabled="{Binding !IsCapturing}" />
 				</StackPanel>
 
@@ -85,7 +92,7 @@
 			   Stretch="Uniform" 
 			   HorizontalAlignment="Left" 
 			   VerticalAlignment="Top" 
-			   IsVisible="{Binding IsCapturing}" 
+			   IsVisible="{Binding ShowScreenShots}" 
 			   Margin="0,15,0,0" 
 			   Source="{Binding FrameBuffer, Converter={StaticResource bytesToBitmapConverter}}" />
 	</Grid>

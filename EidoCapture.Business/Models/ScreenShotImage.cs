@@ -11,7 +11,7 @@ namespace EidoCapture.Business.Models
 
         public string ScopedFilePath () => Path.Combine(ParentDirectory, FileName);
 
-        public ScreenShotImage(byte[] imageBuffer)
+        public ScreenShotImage(byte[] imageBuffer, bool allocateNewImage = false)
         {
             DateTime currentDate = DateTime.Now;
             string thisDaysImageFolder = currentDate.ToString("yyyy-MM-dd", DateTimeFormatInfo.InvariantInfo);
@@ -20,8 +20,15 @@ namespace EidoCapture.Business.Models
             ParentDirectory = thisDaysImageFolder;
             FileName = fileName;
 
-            Buffer = new byte[imageBuffer.Length];
-            imageBuffer.CopyTo(Buffer, 0);
+            if (allocateNewImage)
+            {
+                Buffer = new byte[imageBuffer.Length];
+                imageBuffer.CopyTo(Buffer, 0);
+            }
+            else
+            {
+                Buffer = imageBuffer;
+            }
         }
     }
 }

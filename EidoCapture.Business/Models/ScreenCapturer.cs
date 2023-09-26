@@ -8,6 +8,13 @@ namespace EidoCapture.Business.Models
     {
         public ICapturer Capturer { get; set; }
 
+        private bool _allocateNewImage;
+        public bool AllocateNewImage
+        {
+            get => _allocateNewImage;
+            set => SetProperty(ref _allocateNewImage, value);
+        }
+
         private byte[]? _mostRecentScreenShotBuffer;
         public byte[]? MostRecentScreenShotBuffer
         {
@@ -22,7 +29,7 @@ namespace EidoCapture.Business.Models
 
         private void SaveScreenShot(byte[] imageBuffer)
         {
-            ScreenShotImage image = new(imageBuffer);
+            ScreenShotImage image = new(imageBuffer, AllocateNewImage);
 
             CRUD.CreateImage(image.Buffer, image.ScopedFilePath());
 

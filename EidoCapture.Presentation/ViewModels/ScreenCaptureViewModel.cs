@@ -2,7 +2,6 @@
 using CommunityToolkit.Mvvm.Input;
 using EidoCapture.Business.Models;
 using EidoCapture.Presentation.Base;
-using ScreenCapture.NET;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -22,6 +21,9 @@ public partial class ScreenCaptureViewModel : BaseViewModel
 
     [ObservableProperty]
     private List<string> _displays;
+
+    [ObservableProperty]
+    private bool _showScreenShots;
 
     [ObservableProperty]
     private bool _isCapturing;
@@ -65,6 +67,7 @@ public partial class ScreenCaptureViewModel : BaseViewModel
     {
         IsCapturing = true;
 
+        _screenCapturer.AllocateNewImage = ShowScreenShots;
         _screenCapturer.Capturer.Activate(DelaySeconds, SelectedDisplay);
     }
 
