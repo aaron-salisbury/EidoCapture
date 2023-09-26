@@ -1,4 +1,5 @@
-﻿using EidoCapture.Data.Domains;
+﻿using EidoCapture.Data.Attributes;
+using EidoCapture.Data.Domains;
 using System.Diagnostics;
 using System.Text.Json;
 
@@ -29,7 +30,7 @@ namespace EidoCapture.Data
         {
             try
             {
-                string filePath = Path.Combine(GetIODirectoryPath<T>(), GetJsonFileNameForType<T>());
+                string filePath = Path.Combine(GetIODirectoryPath<T>(), GetJsonFileNameForType(typeof(T)));
 
                 if (File.Exists(filePath))
                 {
@@ -53,7 +54,7 @@ namespace EidoCapture.Data
             {
                 try
                 {
-                    FileInfo file = new FileInfo(Path.Combine(GetIODirectoryPath<T>(), GetJsonFileNameForType<T>()));
+                    FileInfo file = new FileInfo(Path.Combine(GetIODirectoryPath<T>(), GetJsonFileNameForType(typeof(T))));
 
                     if (file != null && file.Directory != null)
                     {
@@ -98,7 +99,7 @@ namespace EidoCapture.Data
         {
             try
             {
-                string filePath = Path.Combine(GetIODirectoryPath<T>(), GetJsonFileNameForType<T>());
+                string filePath = Path.Combine(GetIODirectoryPath<T>(), GetJsonFileNameForType(typeof(T)));
 
                 if (File.Exists(filePath))
                 {
@@ -155,9 +156,16 @@ namespace EidoCapture.Data
             return !string.IsNullOrEmpty(appName) ? Path.Combine(appPath, appName) : appPath;
         }
 
-        private static string GetJsonFileNameForType<T>()
+        private static string GetJsonFileNameForType(Type domainType)
         {
-            string typeName = typeof(T).ToString();
+            Attribute[] attributes = Attribute.GetCustomAttributes(domainType);
+            Attribute? baseNameAttribute = attributes.Where(a => a is BaseNameAttribute).FirstOrDefault();
+            if (baseNameAttribute != null)
+            {
+                return $"{((BaseNameAttribute)baseNameAttribute).BaseName}.json";
+            }
+
+            string typeName = domainType.ToString();
             int pos = typeName.LastIndexOf('.') + 1;
             string objectName = typeName.Substring(pos, typeName.Length - pos);
 
