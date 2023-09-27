@@ -1,6 +1,7 @@
 ﻿using EidoCapture.Data.Attributes;
 using EidoCapture.Data.Domains;
 using System.Diagnostics;
+using System.Reflection;
 using System.Text.Json;
 
 namespace EidoCapture.Data
@@ -170,6 +171,22 @@ namespace EidoCapture.Data
             string objectName = typeName.Substring(pos, typeName.Length - pos);
 
             return $"{objectName}.json";
+        }
+
+        private static string? GetEmbeddedResourceText(string filename)
+        {
+            string? result = null;
+
+            using (Stream? stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(filename))
+            {
+                if (stream != null)
+                {
+                    using StreamReader streamReader = new(stream);
+                    result = streamReader.ReadToEnd();
+                }
+            }
+
+            return result;
         }
     }
 }
