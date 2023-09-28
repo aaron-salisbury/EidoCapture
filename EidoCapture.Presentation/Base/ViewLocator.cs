@@ -4,7 +4,7 @@ using System;
 
 namespace EidoCapture.Presentation.Base
 {
-    public class ViewLocator : IDataTemplate
+    internal class ViewLocator : IDataTemplate
     {
         public Control Build(object? data)
         {

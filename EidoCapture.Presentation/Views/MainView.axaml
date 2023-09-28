@@ -16,10 +16,13 @@
 			<Setter Property="Height" Value="20" />
 		</Style>
 
+		<Style Selector="c|ViewHeaderControl">
+			<Setter Property="Margin" Value="15,8,0,20" />
+		</Style>
+
 		<Style Selector="Border.viewBackground">
 			<Setter Property="Background" Value="{DynamicResource SystemRegionColor}" />
 			<Setter Property="Margin" Value="0" />
-			<Setter Property="Padding" Value="15,8,0,0" />
 			<Setter Property="CornerRadius" Value="10,0,0,0" />
 		</Style>
 	</UserControl.Styles>
@@ -32,9 +35,9 @@
 				<material:MaterialIcon Classes="navBtnIcon" Kind="MonitorScreenshot" />
 			</TabItem.Header>
 			<Border Classes="viewBackground">
-				<Grid RowDefinitions="Auto,20,*">
+				<Grid RowDefinitions="Auto,*">
 					<c:ViewHeaderControl Grid.Row="0" FriendlyAppName="EIDO CAPTURE" />
-					<v:ScreenCaptureView Grid.Row="2" Margin="23,0,0,0" />
+					<v:ScreenCaptureView Grid.Row="1" Margin="38,0,0,0" />
 				</Grid>
 			</Border>
 		</TabItem>
@@ -44,9 +47,9 @@
 				<material:MaterialIcon Classes="navBtnIcon" Kind="CogOutline" />
 			</TabItem.Header>
 			<Border Classes="viewBackground">
-				<Grid RowDefinitions="Auto,20,*">
+				<Grid RowDefinitions="Auto,*">
 					<c:ViewHeaderControl Grid.Row="0" FriendlyAppName="SETTINGS" />
-					<v:SettingsView Grid.Row="2" Margin="23,0,0,0" />
+					<v:SettingsView Grid.Row="1" Margin="38,0,0,0" />
 				</Grid>
 			</Border>
 		</TabItem>
