@@ -16,18 +16,15 @@
 			<Setter Property="Height" Value="20" />
 		</Style>
 
-		<Style Selector="c|ViewHeaderControl">
-			<Setter Property="Margin" Value="15,8,0,20" />
-		</Style>
-
 		<Style Selector="Border.viewBackground">
 			<Setter Property="Background" Value="{DynamicResource SystemRegionColor}" />
 			<Setter Property="Margin" Value="0" />
-			<Setter Property="CornerRadius" Value="10,0,0,0" />
+			<Setter Property="CornerRadius" Value="0,0,0,0" />
 		</Style>
 	</UserControl.Styles>
 
-	<TabControl Grid.Row="1" TabStripPlacement="Left" Padding="0" Background="{DynamicResource SystemChromeBlackMediumLowColor}">
+	<TabControl TabStripPlacement="Left" Padding="0" Background="{DynamicResource SystemChromeLowColor}">
+		
 		<!-- Icons: https://pictogrammers.com/library/mdi/ -->
 
 		<TabItem>
@@ -36,24 +33,23 @@
 			</TabItem.Header>
 			<Border Classes="viewBackground">
 				<Grid RowDefinitions="Auto,*">
-					<c:ViewHeaderControl Grid.Row="0" FriendlyAppName="EIDO CAPTURE" />
-					<v:ScreenCaptureView Grid.Row="1" Margin="38,0,0,0" />
+					<c:ViewHeaderControl Grid.Row="0" FriendlyPageName="Eido Capture" />
+					<v:ScreenCaptureView Grid.Row="1" Margin="20,20,0,0" />
 				</Grid>
 			</Border>
 		</TabItem>
 
-		<TabItem>
+		<TabItem Name="SettingsTabItem">
 			<TabItem.Header>
 				<material:MaterialIcon Classes="navBtnIcon" Kind="CogOutline" />
 			</TabItem.Header>
 			<Border Classes="viewBackground">
 				<Grid RowDefinitions="Auto,*">
-					<c:ViewHeaderControl Grid.Row="0" FriendlyAppName="SETTINGS" />
-					<v:SettingsView Grid.Row="1" Margin="38,0,0,0" />
+					<c:ViewHeaderControl Grid.Row="0" FriendlyPageName="Settings" />
+					<v:SettingsView Grid.Row="1" Margin="20,20,0,0" />
 				</Grid>
 			</Border>
 		</TabItem>
 
 	</TabControl>
-  
 </UserControl>

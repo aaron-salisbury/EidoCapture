@@ -5,14 +5,24 @@ namespace EidoCapture.Presentation.Base.Controls
 {
     public partial class ViewHeaderControl : UserControl
     {
-        public static readonly DirectProperty<ViewHeaderControl, string> FriendlyAppNameProperty =
-            AvaloniaProperty.RegisterDirect<ViewHeaderControl, string>(nameof(FriendlyAppName), o => o.FriendlyAppName, (o, v) => o.FriendlyAppName = v);
+        public static readonly DirectProperty<ViewHeaderControl, string> FriendlyPageNameProperty =
+            AvaloniaProperty.RegisterDirect<ViewHeaderControl, string>(nameof(FriendlyPageName), o => o.FriendlyPageName, (o, v) => o.FriendlyPageName = v);
 
-        private string _friendlyAppName = "PLACEHOLDER";
-        public string FriendlyAppName
+        public static readonly DirectProperty<ViewHeaderControl, object?> ButtonsContentProperty =
+            AvaloniaProperty.RegisterDirect<ViewHeaderControl, object?>(nameof(ButtonsContent), o => o.ButtonsContent, (o, v) => o.ButtonsContent = v);
+
+        private string _friendlyPageName = "PLACEHOLDER";
+        public string FriendlyPageName
         {
-            get { return _friendlyAppName; }
-            set { SetAndRaise(FriendlyAppNameProperty, ref _friendlyAppName, value); }
+            get { return _friendlyPageName; }
+            set { SetAndRaise(FriendlyPageNameProperty, ref _friendlyPageName, value); }
+        }
+
+        private object? _buttonsContent;
+        public object? ButtonsContent
+        {
+            get { return _buttonsContent; }
+            set { SetAndRaise(ButtonsContentProperty, ref _buttonsContent, value); }
         }
 
         public ViewHeaderControl()

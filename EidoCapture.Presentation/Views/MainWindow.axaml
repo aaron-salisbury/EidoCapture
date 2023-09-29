@@ -9,8 +9,8 @@
         Icon="/Base/Assets/logo.ico"
         Title="Eido Capture"
 		WindowStartupLocation="CenterScreen"
-		Background="{StaticResource SystemChromeBlackMediumLowColor}"
-		ExtendClientAreaToDecorationsHint="True">
+		ExtendClientAreaToDecorationsHint="True"
+		Background="{DynamicResource SystemRegionColor}">
 
 	<Grid RowDefinitions="30, *">
 

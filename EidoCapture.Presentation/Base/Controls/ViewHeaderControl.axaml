@@ -2,75 +2,25 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="1280" d:DesignHeight="38"
+             mc:Ignorable="d" d:DesignWidth="1280" d:DesignHeight="60"
              x:Class="EidoCapture.Presentation.Base.Controls.ViewHeaderControl"
 			 x:Name="VHC">
 
-	<Grid RowDefinitions="Auto,5,Auto" VerticalAlignment="Top">
+	<Border Background="{DynamicResource SystemChromeMediumColor}" Height="60" CornerRadius="0,0,0,0">
+		<Grid ColumnDefinitions="35,Auto,*,20" VerticalAlignment="Center">
 
-		<Grid Grid.Row="0" ColumnDefinitions="Auto,7,Auto,7,*,Auto,Auto,Auto,Auto" Height="30">
-			<Border Grid.Column="0" Background="{StaticResource GreenAccent}" Width="30" CornerRadius="60,0,0,60" Margin="1,0,0,0" />
-			
-			<TextBlock Grid.Column="2" 
-					   Text="{Binding FriendlyAppName, ElementName=VHC}" 
+			<TextBlock Grid.Column="1"
+					   Text="{Binding FriendlyPageName, ElementName=VHC}"
 					   FontFamily="{StaticResource ViewHeadingFont}"
-					   FontSize="42" 
-					   Foreground="{DynamicResource GreenAccent}" 
-					   VerticalAlignment="Center" 
-					   HorizontalAlignment="Left" 
-					   Margin="0,1,-5,0" />
+					   FontSize="28"
+					   VerticalAlignment="Center"
+					   HorizontalAlignment="Center" />
 
-			<Border Grid.Column="4" 
-					Background="{DynamicResource GreenAccent}" 
-					CornerRadius="0" />
+			<ContentControl Grid.Column="2"
+							Name="AppBarButtonsContent"
+							HorizontalAlignment="Right"
+							Content="{Binding ButtonsContent, ElementName=VHC}"/>
 
-			<Border Grid.Column="5" 
-					Background="{DynamicResource GreenAccent}" 
-					Width="5"  
-					Margin="5,0,0,0" />
-
-			<Border Grid.Column="6" 
-					Background="{DynamicResource GreenAccent}" 
-					Width="20" 
-					Margin="5,0,0,0" />
-
-			<Border Grid.Column="7" 
-					Background="{DynamicResource GreenAccent}" 
-					Width="5" 
-					Margin="5,0,0,0" />
-
-			<Border Grid.Column="8" 
-					Background="{DynamicResource GreenAccent}" 
-					Width="45" 
-					Margin="5,0,0,0" />
 		</Grid>
-
-		<Grid Grid.Row="2" ColumnDefinitions="*,Auto,Auto,Auto,Auto" Height="3">
-			<Border Grid.Column="0"
-					Background="{DynamicResource GreenAccent}"
-					CornerRadius="0,0,0,30"
-					Margin="20,0,0,0" />
-
-			<Border Grid.Column="1"
-					Background="{DynamicResource GreenAccent}"
-					Width="5"
-					Margin="5,0,0,0" />
-
-			<Border Grid.Column="2"
-					Background="{DynamicResource GreenAccent}"
-					Width="20"
-					Margin="5,0,0,0" />
-
-			<Border Grid.Column="3"
-					Background="{DynamicResource GreenAccent}"
-					Width="5"
-					Margin="5,0,0,0" />
-
-			<Border Grid.Column="4"
-					Background="{DynamicResource GreenAccent}"
-					Width="45"
-					Margin="5,0,0,0" />
-		</Grid>
-		
-	</Grid>
+	</Border>
 </UserControl>
