@@ -41,8 +41,20 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Base\AppInfo.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>AppInfo.resx</DependentUpon>
+    </Compile>
     <Compile Update="Base\Controls\ViewHeaderControl.axaml.cs">
       <DependentUpon>ViewHeaderControl.axaml</DependentUpon>
     </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Base\AppInfo.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AppInfo.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

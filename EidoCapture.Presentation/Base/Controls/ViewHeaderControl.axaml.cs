@@ -5,24 +5,24 @@ namespace EidoCapture.Presentation.Base.Controls
 {
     public partial class ViewHeaderControl : UserControl
     {
-        public static readonly DirectProperty<ViewHeaderControl, string> FriendlyPageNameProperty =
-            AvaloniaProperty.RegisterDirect<ViewHeaderControl, string>(nameof(FriendlyPageName), o => o.FriendlyPageName, (o, v) => o.FriendlyPageName = v);
+        public static readonly DirectProperty<ViewHeaderControl, string?> FriendlyPageNameProperty =
+            AvaloniaProperty.RegisterDirect<ViewHeaderControl, string?>(nameof(FriendlyPageName), o => o.FriendlyPageName, (o, v) => o.FriendlyPageName = v);
 
-        public static readonly DirectProperty<ViewHeaderControl, object?> ButtonsContentProperty =
-            AvaloniaProperty.RegisterDirect<ViewHeaderControl, object?>(nameof(ButtonsContent), o => o.ButtonsContent, (o, v) => o.ButtonsContent = v);
+        public static readonly DirectProperty<ViewHeaderControl, object?> RibbonContentProperty =
+            AvaloniaProperty.RegisterDirect<ViewHeaderControl, object?>(nameof(RibbonContent), o => o.RibbonContent, (o, v) => o.RibbonContent = v);
 
-        private string _friendlyPageName = "PLACEHOLDER";
-        public string FriendlyPageName
+        private string? _friendlyPageName;
+        public string? FriendlyPageName
         {
             get { return _friendlyPageName; }
             set { SetAndRaise(FriendlyPageNameProperty, ref _friendlyPageName, value); }
         }
 
-        private object? _buttonsContent;
-        public object? ButtonsContent
+        private object? _ribbonContent;
+        public object? RibbonContent
         {
-            get { return _buttonsContent; }
-            set { SetAndRaise(ButtonsContentProperty, ref _buttonsContent, value); }
+            get { return _ribbonContent; }
+            set { SetAndRaise(RibbonContentProperty, ref _ribbonContent, value); }
         }
 
         public ViewHeaderControl()

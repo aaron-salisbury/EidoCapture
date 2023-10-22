@@ -1,5 +1,7 @@
-﻿using EidoCapture.Business;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using EidoCapture.Business;
 using EidoCapture.Presentation.Base;
+using System.Threading.Tasks;
 
 namespace EidoCapture.Presentation.ViewModels
 {
@@ -12,12 +14,34 @@ namespace EidoCapture.Presentation.ViewModels
             set
             {
                 SetProperty(ref _storageFolderPath, value);
-                Manager.UpdateUserStorageDirectory(_storageFolderPath);
+                Task.Run(() => Manager.UpdateUserStorageDirectoryAsync(_storageFolderPath));
             }
         }
 
-        public string PrivacyPolicyURL => Manager.PRIVACY_URL;
+        [ObservableProperty]
+        private string _appDisplayName;
 
-        public string IssuesURL => Manager.ISSUES_URL;
+        [ObservableProperty]
+        private string _copyHolder;
+
+        [ObservableProperty]
+        private string _privacyURL;
+
+        [ObservableProperty]
+        private string _issuesURL;
+
+        [ObservableProperty]
+        private string _appDescription;
+
+        public string ApplicationInfo => $"{AppDisplayName} - {Manager.AppVersion}";
+
+        public SettingsViewModel()
+        {
+            _appDisplayName = AppInfo.AppDisplayName;
+            _copyHolder = AppInfo.CopyHolder;
+            _privacyURL = AppInfo.PrivacyURL;
+            _issuesURL = AppInfo.IssuesURL;
+            _appDescription = AppInfo.AppDescription;
+        }
     }
 }

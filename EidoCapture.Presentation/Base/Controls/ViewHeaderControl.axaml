@@ -2,12 +2,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="1280" d:DesignHeight="60"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="EidoCapture.Presentation.Base.Controls.ViewHeaderControl"
 			 x:Name="VHC">
 
 	<Border Background="{DynamicResource SystemChromeMediumColor}" Height="60" CornerRadius="0,0,0,0">
-		<Grid ColumnDefinitions="35,Auto,*,20" VerticalAlignment="Center">
+		<Grid ColumnDefinitions="30,Auto,10,*,30" VerticalAlignment="Center">
 
 			<TextBlock Grid.Column="1"
 					   Text="{Binding FriendlyPageName, ElementName=VHC}"
@@ -16,10 +16,7 @@
 					   VerticalAlignment="Center"
 					   HorizontalAlignment="Center" />
 
-			<ContentControl Grid.Column="2"
-							Name="AppBarButtonsContent"
-							HorizontalAlignment="Right"
-							Content="{Binding ButtonsContent, ElementName=VHC}"/>
+			<ContentControl Grid.Column="3" Content="{Binding RibbonContent, ElementName=VHC}" />
 
 		</Grid>
 	</Border>

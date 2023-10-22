@@ -1,0 +1,83 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="60"
+             x:Class="EidoCapture.Presentation.Base.Controls.RibbonControl"
+			 xmlns:vm="clr-namespace:EidoCapture.Presentation.ViewModels"
+             x:DataType="vm:ScreenCaptureViewModel"
+			 xmlns:material="using:Material.Icons.Avalonia"
+			 xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
+             xmlns:ia="clr-namespace:Avalonia.Xaml.Interactions.Core;assembly=Avalonia.Xaml.Interactions"
+			 Background="Transparent">
+
+	<UserControl.Styles>
+		<Style Selector="TextBlock.buttonLabel">
+			<Setter Property="FontSize" Value="10" />
+			<Setter Property="FontWeight" Value="Light" />
+			<Setter Property="Margin" Value="1,0,0,2" />
+		</Style>
+	</UserControl.Styles>
+
+	<Border>
+		<Grid ColumnDefinitions="*,Auto">
+
+			<StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+				<StackPanel Orientation="Horizontal" Margin="0,0,30,0">
+					<StackPanel>
+						<TextBlock Text="Start" Classes="buttonLabel" />
+						<Button Name="ActivateBtn" Command="{Binding ActivateCaptureCommand}" Background="Transparent" IsEnabled="{Binding !IsCapturing}">
+							<material:MaterialIcon Name="ActivateIcon" Kind="RecordCircleOutline" Width="19" Height="19" />
+							<Button.BorderBrush>
+								<SolidColorBrush Color="{DynamicResource SystemBaseHighColor}" Opacity="0.5" />
+							</Button.BorderBrush>
+							<i:Interaction.Behaviors>
+								<ia:EventTriggerBehavior EventName="Click" SourceObject="ActivateBtn">
+									<ia:ChangePropertyAction TargetObject="ActivateIcon" PropertyName="Foreground" Value="{StaticResource RedAccent}" />
+								</ia:EventTriggerBehavior>
+							</i:Interaction.Behaviors>
+						</Button>
+					</StackPanel>
+
+					<StackPanel Margin="10,0,0,0">
+						<TextBlock Text="Stop" Classes="buttonLabel" />
+						<Button Name="DeactivateBtn" Command="{Binding DeactivateCaptureCommand}" Background="Transparent" IsEnabled="{Binding IsCapturing}">
+							<material:MaterialIcon Kind="PauseCircleOutline" Width="19" Height="19" />
+							<Button.BorderBrush>
+								<SolidColorBrush Color="{DynamicResource SystemBaseHighColor}" Opacity="0.5" />
+							</Button.BorderBrush>
+							<i:Interaction.Behaviors>
+								<ia:EventTriggerBehavior EventName="Click" SourceObject="DeactivateBtn">
+									<ia:ChangePropertyAction TargetObject="ActivateIcon" PropertyName="Foreground" Value="{DynamicResource SystemBaseHighColor}" />
+								</ia:EventTriggerBehavior>
+							</i:Interaction.Behaviors>
+						</Button>
+					</StackPanel>
+				</StackPanel>
+
+				<StackPanel Margin="0,0,15,0">
+					<TextBlock Text="Capture Delay Seconds" Classes="buttonLabel" />
+					<NumericUpDown ValueChanged="DelaySecondsNumeric_OnValueChanged"
+								   Value="{Binding DelaySeconds}"
+								   Minimum="1"
+								   Maximum="999999999"
+								   Increment="1"
+								   ClipValueToMinMax="True"
+								   Width="160"
+								   HorizontalAlignment="Left"
+								   IsEnabled="{Binding !IsCapturing}" />
+				</StackPanel>
+
+				<StackPanel>
+					<TextBlock Text="Display" Classes="buttonLabel" />
+					<ComboBox SelectedItem="{Binding SelectedDisplay}"
+							  ItemsSource="{Binding Displays}"
+							  Width="160"
+							  HorizontalAlignment="Left"
+							  IsEnabled="{Binding !IsCapturing}" />
+				</StackPanel>
+			</StackPanel>
+			
+		</Grid>
+	</Border>
+</UserControl>

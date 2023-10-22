@@ -1,7 +1,6 @@
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using EidoCapture.Presentation.Base.Extensions;
-using System;
 
 namespace EidoCapture.Presentation.Views
 {
@@ -25,14 +24,6 @@ namespace EidoCapture.Presentation.Views
             base.OnUnloaded(e);
 
             this.UnloadModelEvents();
-        }
-
-        private void DelaySecondsNumeric_OnValueChanged(object? sender, NumericUpDownValueChangedEventArgs e)
-        {
-            if (e.NewValue != null && sender is NumericUpDown numeric)
-            {
-                numeric.Value = Math.Round(e.NewValue.Value, 0, MidpointRounding.AwayFromZero);
-            }
         }
     }
 }

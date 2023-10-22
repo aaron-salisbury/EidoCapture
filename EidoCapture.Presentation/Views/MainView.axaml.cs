@@ -1,15 +1,17 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Interactivity;
 using EidoCapture.Presentation.Base.Extensions;
 
 namespace EidoCapture.Presentation.Views;
 
 public partial class MainView : UserControl
 {
-    private const double SETTINGS_TAB_BOTTOM_MARGIN = 135.0D;
+    private const double SETTINGS_TAB_BOTTOM_MARGIN = 105.0D;
 
     TabItem? _settingsTabItem = null;
     private double _settingsMarginDif = 0.0D;
+    private double _titleBarHeight = MainWindow.GetTitleBarHeight();
 
     public MainView()
     {
@@ -19,12 +21,17 @@ public partial class MainView : UserControl
         this.SizeChanged += MainView_OnSizeChanged;
     }
 
+    protected override void OnUnloaded(RoutedEventArgs e)
+    {
+        this.SizeChanged -= MainView_OnSizeChanged;
+    }
+
     private void MainView_OnSizeChanged(object? sender, SizeChangedEventArgs e)
     {
         if (_settingsTabItem == null)
         {
             _settingsTabItem = this.FindControl<TabItem>("SettingsTabItem");
-            _settingsMarginDif = (_settingsTabItem?.Bounds.Top ?? 0.0D) + SETTINGS_TAB_BOTTOM_MARGIN - (_settingsTabItem?.Bounds.Height ?? 0.0D);
+            _settingsMarginDif = (_settingsTabItem?.Bounds.Top ?? 0.0D) + _titleBarHeight + SETTINGS_TAB_BOTTOM_MARGIN - (_settingsTabItem?.Bounds.Height ?? 0.0D);
         }
 
         if (_settingsTabItem != null)

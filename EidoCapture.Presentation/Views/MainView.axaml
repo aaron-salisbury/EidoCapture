@@ -33,7 +33,11 @@
 			</TabItem.Header>
 			<Border Classes="viewBackground">
 				<Grid RowDefinitions="Auto,*">
-					<c:ViewHeaderControl Grid.Row="0" FriendlyPageName="Eido Capture" />
+					<c:ViewHeaderControl Grid.Row="0">
+						<c:ViewHeaderControl.RibbonContent>
+							<c:RibbonControl />
+						</c:ViewHeaderControl.RibbonContent>
+					</c:ViewHeaderControl>
 					<v:ScreenCaptureView Grid.Row="1" Margin="20,20,0,0" />
 				</Grid>
 			</Border>

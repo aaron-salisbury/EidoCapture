@@ -4,17 +4,16 @@ namespace EidoCapture.Business
 {
     public static class Manager
     {
-        public const string PRIVACY_URL = "https://github.com/aaron-salisbury/EidoCapture/blob/master/PrivacyPolicy.md";
-        public const string ISSUES_URL = "https://github.com/aaron-salisbury/EidoCapture/issues";
+        public static string? AppVersion { get; set; }
 
         public static string GetCurrentUserStorageDirectory()
         {
             return CRUD.GetCurrentUserStorageDirectory();
         }
 
-        public static void UpdateUserStorageDirectory(string newUserStorageDirectory)
+        public static async Task UpdateUserStorageDirectoryAsync(string newUserStorageDirectory)
         {
-            Task.Run(() => CRUD.UpdateUserStorageDirectoryAsync(newUserStorageDirectory));
+            await CRUD.UpdateUserStorageDirectoryAsync(newUserStorageDirectory);
         }
     }
 }

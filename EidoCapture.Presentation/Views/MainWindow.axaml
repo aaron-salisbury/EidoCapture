@@ -4,20 +4,30 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:v="clr-namespace:EidoCapture.Presentation.Views"
-        mc:Ignorable="d" d:DesignWidth="1280" d:DesignHeight="720"
+        mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="600"
+		MinWidth="830" MinHeight="325"
+		Width="1000" Height="600"
         x:Class="EidoCapture.Presentation.Views.MainWindow"
         Icon="/Base/Assets/logo.ico"
         Title="Eido Capture"
 		WindowStartupLocation="CenterScreen"
+		Background="{DynamicResource SystemRegionColor}"
+		x:Name="Win"
 		ExtendClientAreaToDecorationsHint="True"
-		Background="{DynamicResource SystemRegionColor}">
+		ExtendClientAreaChromeHints="Default"
+		ExtendClientAreaTitleBarHeightHint="-1">
 
-	<Grid RowDefinitions="30, *">
+	<Grid x:Name="TitleBarAndContentGrid">
 
-		<!-- Window Drag Area -->
-		<Border Grid.Row="0" IsHitTestVisible="False" />
+		<TextBlock Grid.Row="0"
+				   Text="{Binding Title, ElementName=Win}"
+				   HorizontalAlignment="Center"
+				   VerticalAlignment="Center"
+				   FontSize="12"
+				   FontWeight="Bold"
+				   Foreground="{DynamicResource SystemBaseMediumColor}" />
 
-		<v:MainView Grid.Row="1" IsHitTestVisible="True" />
+		<v:MainView Grid.Row="1" />
 
 	</Grid>
 	

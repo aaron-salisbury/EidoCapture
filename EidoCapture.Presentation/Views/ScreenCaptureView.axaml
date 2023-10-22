@@ -6,94 +6,36 @@
              x:Class="EidoCapture.Presentation.Views.ScreenCaptureView"
 			 xmlns:vm="clr-namespace:EidoCapture.Presentation.ViewModels"
 			 x:DataType="vm:ScreenCaptureViewModel"
-			 xmlns:material="using:Material.Icons.Avalonia"
-			 xmlns:cons="clr-namespace:EidoCapture.Presentation.Base.Converters;assembly=EidoCapture.Presentation"
-			 xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
-             xmlns:ia="clr-namespace:Avalonia.Xaml.Interactions.Core;assembly=Avalonia.Xaml.Interactions">
+			 xmlns:cons="clr-namespace:EidoCapture.Presentation.Base.Converters;assembly=EidoCapture.Presentation">
 
 	<UserControl.Resources>
 		<cons:BytesToBitmapConverter x:Key="bytesToBitmapConverter"/>
 	</UserControl.Resources>
-	
-	<UserControl.Styles>
-		<Style Selector="TextBlock.propertyLabel">
-			<Setter Property="FontWeight" Value="Light" />
-			<Setter Property="FontSize" Value="14" />
-			<Setter Property="Margin" Value="0,0,0,5" />
-		</Style>
-	</UserControl.Styles>
 
-	<Grid RowDefinitions="Auto,10,*" Margin="0,0,20,20">
-		<Border Grid.Row="0" 
-				Background="{DynamicResource SystemChromeMediumLowColor}" 
-				HorizontalAlignment="Left" 
-				CornerRadius="10,10,10,10" 
-				Padding="15">
-			<StackPanel Orientation="Horizontal">
-				<StackPanel Margin="0,0,15,0">
-					<TextBlock Text="Capture Delay Seconds" Classes="propertyLabel" />
-					<NumericUpDown ValueChanged="DelaySecondsNumeric_OnValueChanged"
-								   Value="{Binding DelaySeconds}"
-								   Minimum="1"
-								   Maximum="999999999"
-								   Increment="1"
-								   ClipValueToMinMax="True"
-								   Width="160"
-								   HorizontalAlignment="Left"
-								   IsEnabled="{Binding !IsCapturing}" />
-				</StackPanel>
+	<Grid RowDefinitions="Auto,15,*" Margin="0,0,20,20">
 
-				<StackPanel Margin="0,0,15,0">
-					<TextBlock Text="Display" Classes="propertyLabel" />
-					<ComboBox SelectedItem="{Binding SelectedDisplay}"
-							  ItemsSource="{Binding Displays}"
-							  Width="160"
-							  HorizontalAlignment="Left"
-							  IsEnabled="{Binding !IsCapturing}" />
-				</StackPanel>
+		<CheckBox Grid.Row="0" IsChecked="{Binding ShowScreenShots}" IsEnabled="{Binding !IsCapturing}">
+			Show Screen Captures
+		</CheckBox>
 
-				<StackPanel>
-					<TextBlock Text="Show" Classes="propertyLabel" />
-					<CheckBox IsChecked="{Binding ShowScreenShots}" 
-							  HorizontalAlignment="Center" 
-							  IsEnabled="{Binding !IsCapturing}" />
-				</StackPanel>
-
-				<StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Margin="30,0,0,0">
-					<Button Name="ActivateBtn" Command="{Binding ActivateCaptureCommand}" Background="Transparent" IsEnabled="{Binding !IsCapturing}">
-						<material:MaterialIcon Name="ActivateIcon" Kind="RecordCircleOutline" Width="19" Height="19" />
-						<Button.BorderBrush>
-							<SolidColorBrush Color="{DynamicResource SystemBaseHighColor}" Opacity="0.5" />
-						</Button.BorderBrush>
-						<i:Interaction.Behaviors>
-							<ia:EventTriggerBehavior EventName="Click" SourceObject="ActivateBtn">
-								<ia:ChangePropertyAction TargetObject="ActivateIcon" PropertyName="Foreground" Value="{StaticResource RedAccent}" />
-							</ia:EventTriggerBehavior>
-						</i:Interaction.Behaviors>
-					</Button>
-
-					<Button Name="DeactivateBtn" Command="{Binding DeactivateCaptureCommand}" Background="Transparent" IsEnabled="{Binding IsCapturing}" Margin="10,0,0,0">
-						<material:MaterialIcon Kind="PauseCircleOutline" Width="19" Height="19" />
-						<Button.BorderBrush>
-							<SolidColorBrush Color="{DynamicResource SystemBaseHighColor}" Opacity="0.5" />
-						</Button.BorderBrush>
-						<i:Interaction.Behaviors>
-							<ia:EventTriggerBehavior EventName="Click" SourceObject="DeactivateBtn">
-								<ia:ChangePropertyAction TargetObject="ActivateIcon" PropertyName="Foreground" Value="{DynamicResource SystemBaseHighColor}" />
-							</ia:EventTriggerBehavior>
-						</i:Interaction.Behaviors>
-					</Button>
-				</StackPanel>
-			</StackPanel>
-		</Border>
-
+		<ProgressBar Grid.Row="2"
+					 HorizontalAlignment="Left"
+					 VerticalAlignment="Top"
+					 IsIndeterminate="True">
+			<ProgressBar.IsVisible>
+				<MultiBinding Converter="{x:Static BoolConverters.And}">
+					<Binding Path="IsCapturing" />
+					<Binding Path="!ShowScreenShots" />
+				</MultiBinding>
+			</ProgressBar.IsVisible>
+		</ProgressBar>
+		
 		<Image Grid.Row="2" 
 			   Name="ScreenShotImage"
 			   Stretch="Uniform" 
 			   HorizontalAlignment="Left" 
 			   VerticalAlignment="Top" 
 			   IsVisible="{Binding ShowScreenShots}" 
-			   Margin="0,15,0,0" 
 			   Source="{Binding FrameBuffer, Converter={StaticResource bytesToBitmapConverter}}" />
 	</Grid>
 </UserControl>

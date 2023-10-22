@@ -2,8 +2,6 @@
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Data.Core.Plugins;
 using Avalonia.Markup.Xaml;
-
-using EidoCapture.Presentation.ViewModels;
 using EidoCapture.Presentation.Views;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -21,7 +19,27 @@ public partial class App : Application
     {
         Services = ConfigureServices();
 
+        Business.Manager.AppVersion = GetAppVersion();
+
         AvaloniaXamlLoader.Load(this);
+    }
+
+    public override void OnFrameworkInitializationCompleted()
+    {
+        // Line below is needed to remove Avalonia data validation.
+        // Without this line you will get duplicate validations from both Avalonia and CT
+        BindingPlugins.DataValidators.RemoveAt(0);
+
+        if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+        {
+            desktop.MainWindow = new MainWindow();
+        }
+        else if (ApplicationLifetime is ISingleViewApplicationLifetime singleView)
+        {
+            singleView.MainView = new MainView();
+        }
+
+        base.OnFrameworkInitializationCompleted();
     }
 
     private static IServiceProvider ConfigureServices()
@@ -43,21 +61,26 @@ public partial class App : Application
         return services.BuildServiceProvider();
     }
 
-    public override void OnFrameworkInitializationCompleted()
+    private static string GetAppVersion()
     {
-        // Line below is needed to remove Avalonia data validation.
-        // Without this line you will get duplicate validations from both Avalonia and CT
-        BindingPlugins.DataValidators.RemoveAt(0);
+        string versionNumber = string.Empty;
 
-        if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+        // Version set in Project File (right-click project) > Package > Package Version
+        Assembly executingAssembly = Assembly.GetExecutingAssembly();
+        AssemblyName assemblyName = executingAssembly.GetName();
+
+        if (assemblyName.Version != null)
         {
-            desktop.MainWindow = new MainWindow();
-        }
-        else if (ApplicationLifetime is ISingleViewApplicationLifetime singleView)
-        {
-            singleView.MainView = new MainView();
+            versionNumber = assemblyName.Version.ToString();
+
+            // Drop 4th position, only care about Major.Minor.Patch
+            int index = versionNumber.LastIndexOf(".");
+            if (index >= 0)
+            {
+                versionNumber = versionNumber.Substring(0, index);
+            }
         }
 
-        base.OnFrameworkInitializationCompleted();
+        return versionNumber;
     }
 }
