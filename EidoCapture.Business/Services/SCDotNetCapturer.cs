@@ -1,5 +1,7 @@
 ﻿using Microsoft.IO;
 using ScreenCapture.NET;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.PixelFormats;
 using System.Diagnostics;
 
 namespace EidoCapture.Business.Services
