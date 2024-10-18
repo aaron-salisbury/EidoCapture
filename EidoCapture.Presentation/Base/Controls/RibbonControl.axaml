@@ -26,7 +26,12 @@
 				<StackPanel Orientation="Horizontal" Margin="0,0,30,0">
 					<StackPanel>
 						<TextBlock Text="Start" Classes="buttonLabel" />
-						<Button Name="ActivateBtn" Command="{Binding ActivateCaptureCommand}" Background="Transparent" IsEnabled="{Binding !IsCapturing}">
+						<Button Name="ActivateBtn" 
+								Command="{Binding ActivateCaptureCommand}" 
+								Background="Transparent"
+								IsEnabled="{Binding !IsCapturing}"
+								BorderThickness="{DynamicResource ComboBoxBorderThemeThickness}"
+								BorderBrush="{DynamicResource SystemControlForegroundBaseMediumBrush}">
 							<material:MaterialIcon Name="ActivateIcon" Kind="RecordCircleOutline" Width="19" Height="19" />
 							<Button.BorderBrush>
 								<SolidColorBrush Color="{DynamicResource SystemBaseHighColor}" Opacity="0.5" />
@@ -41,11 +46,13 @@
 
 					<StackPanel Margin="10,0,0,0">
 						<TextBlock Text="Stop" Classes="buttonLabel" />
-						<Button Name="DeactivateBtn" Command="{Binding DeactivateCaptureCommand}" Background="Transparent" IsEnabled="{Binding IsCapturing}">
+						<Button Name="DeactivateBtn" 
+								Command="{Binding DeactivateCaptureCommand}" 
+								Background="Transparent" 
+								IsEnabled="{Binding IsCapturing}"
+								BorderThickness="{DynamicResource ComboBoxBorderThemeThickness}" 
+								BorderBrush="{DynamicResource SystemControlForegroundBaseMediumBrush}">
 							<material:MaterialIcon Kind="PauseCircleOutline" Width="19" Height="19" />
-							<Button.BorderBrush>
-								<SolidColorBrush Color="{DynamicResource SystemBaseHighColor}" Opacity="0.5" />
-							</Button.BorderBrush>
 							<i:Interaction.Behaviors>
 								<ia:EventTriggerBehavior EventName="Click" SourceObject="DeactivateBtn">
 									<ia:ChangePropertyAction TargetObject="ActivateIcon" PropertyName="Foreground" Value="{DynamicResource SystemBaseHighColor}" />
