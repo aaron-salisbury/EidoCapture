@@ -74,7 +74,7 @@ namespace EidoCapture.Business.Services
 
             using (IScreenCapture screenCapture = screenCaptureService.GetScreenCapture(captureDisplay))
             {
-                CaptureZone captureZone = screenCapture.RegisterCaptureZone(0, 0, screenCapture.Display.Width, screenCapture.Display.Height);
+                ICaptureZone captureZone = screenCapture.RegisterCaptureZone(0, 0, screenCapture.Display.Width, screenCapture.Display.Height);
 
                 while (!cancelToken.IsCancellationRequested)
                 {
@@ -85,15 +85,15 @@ namespace EidoCapture.Business.Services
             }
         }
 
-        private static Task<byte[]> GetScreenshotImage(IScreenCapture screenCapture, CaptureZone captureZone)
+        private static Task<byte[]> GetScreenshotImage(IScreenCapture screenCapture, ICaptureZone captureZone)
         {
             return Task.Run(() =>
             {
                 screenCapture.CaptureScreen();
 
-                lock (captureZone.Buffer)
+                lock (captureZone.Image.ToRawArray())
                 {
-                    using Image image = Image.LoadPixelData<Bgra32>(captureZone.Buffer, captureZone.Width, captureZone.Height);
+                    using Image image = Image.LoadPixelData<Bgra32>(captureZone.RawBuffer, captureZone.Width, captureZone.Height);
                     using MemoryStream jpgStream = _recyclableStreamManager.GetStream();
                     image.SaveAsJpeg(jpgStream);
 
