@@ -5,8 +5,6 @@ VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EidoCapture.Presentation", "EidoCapture.Presentation\EidoCapture.Presentation.csproj", "{0B5642EB-4BBB-4C49-AE34-E30EAA1A2D1B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EidoCapture.Presentation.Desktop", "EidoCapture.Presentation.Desktop\EidoCapture.Presentation.Desktop.csproj", "{7D5454B1-B681-44EB-BD64-6E842BC3FF5B}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EidoCapture.Data", "EidoCapture.Data\EidoCapture.Data.csproj", "{480CCCEA-BC95-4518-AAB3-4891A3D3B1EF}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EidoCapture.Business", "EidoCapture.Business\EidoCapture.Business.csproj", "{3B37050B-7808-41CA-8705-7C92D64861DD}"
@@ -21,10 +19,6 @@ Global
 		{0B5642EB-4BBB-4C49-AE34-E30EAA1A2D1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B5642EB-4BBB-4C49-AE34-E30EAA1A2D1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B5642EB-4BBB-4C49-AE34-E30EAA1A2D1B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7D5454B1-B681-44EB-BD64-6E842BC3FF5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7D5454B1-B681-44EB-BD64-6E842BC3FF5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7D5454B1-B681-44EB-BD64-6E842BC3FF5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7D5454B1-B681-44EB-BD64-6E842BC3FF5B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{480CCCEA-BC95-4518-AAB3-4891A3D3B1EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{480CCCEA-BC95-4518-AAB3-4891A3D3B1EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{480CCCEA-BC95-4518-AAB3-4891A3D3B1EF}.Release|Any CPU.ActiveCfg = Release|Any CPU

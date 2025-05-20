@@ -20,7 +20,7 @@
 	</Application.Styles>
 
 	<Application.Resources>
-		<FontFamily x:Key="ViewHeadingFont">avares://EidoCapture.Presentation/Base/Assets/Fonts/akashi-font#Akashi</FontFamily>
+		<FontFamily x:Key="ViewHeadingFont">avares://EidoCapture/Base/Assets/Fonts/akashi-font#Akashi</FontFamily>
 	</Application.Resources>
 	
 </Application>

@@ -1,8 +1,7 @@
-﻿using System;
+﻿using Avalonia;
+using System;
 
-using Avalonia;
-
-namespace EidoCapture.Presentation.Desktop;
+namespace EidoCapture.Presentation;
 
 class Program
 {

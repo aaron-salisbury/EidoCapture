@@ -6,7 +6,7 @@
              x:Class="EidoCapture.Presentation.Views.ScreenCaptureView"
 			 xmlns:vm="clr-namespace:EidoCapture.Presentation.ViewModels"
 			 x:DataType="vm:ScreenCaptureViewModel"
-			 xmlns:cons="clr-namespace:EidoCapture.Presentation.Base.Converters;assembly=EidoCapture.Presentation">
+			 xmlns:cons="clr-namespace:EidoCapture.Presentation.Base.Converters;assembly=EidoCapture">
 
 	<UserControl.Resources>
 		<cons:BytesToBitmapConverter x:Key="bytesToBitmapConverter"/>
