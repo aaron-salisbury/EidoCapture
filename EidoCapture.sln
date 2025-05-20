@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EidoCapture.Presentation", "EidoCapture.Presentation\EidoCapture.Presentation.csproj", "{0B5642EB-4BBB-4C49-AE34-E30EAA1A2D1B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EidoCapture.Data", "src\EidoCapture.Data\EidoCapture.Data.csproj", "{480CCCEA-BC95-4518-AAB3-4891A3D3B1EF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EidoCapture.Data", "EidoCapture.Data\EidoCapture.Data.csproj", "{480CCCEA-BC95-4518-AAB3-4891A3D3B1EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EidoCapture.Business", "src\EidoCapture.Business\EidoCapture.Business.csproj", "{3B37050B-7808-41CA-8705-7C92D64861DD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EidoCapture.Business", "EidoCapture.Business\EidoCapture.Business.csproj", "{3B37050B-7808-41CA-8705-7C92D64861DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EidoCapture.Presentation", "src\EidoCapture.Presentation\EidoCapture.Presentation.csproj", "{0B5642EB-4BBB-4C49-AE34-E30EAA1A2D1B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
