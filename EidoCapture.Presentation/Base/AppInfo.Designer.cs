@@ -97,7 +97,7 @@ namespace EidoCapture.Presentation.Base {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://github.com/aaron-salisbury/EidoCapture/blob/master/PrivacyPolicy.md.
+        ///   Looks up a localized string similar to https://github.com/aaron-salisbury/EidoCapture/blob/master/privacy.md.
         /// </summary>
         internal static string PrivacyURL {
             get {
